@@ -31,13 +31,6 @@
 					<div class="product-gallery product-gallery-vertical">
 						<div class="row">
 							<figure class="product-main-image">
-							                                     {% if product.Sale %}
-                            <div class="product-label label-sale"
-                                style="border-radius: 50%;background-color: #c72f0f ;padding: 5px;">
-                                <span style="display: block;">{{product.off_percent}}%</span>
-                                <span style="display: block;padding-top: 2px;">تخفیف</span>
-                            </div>
-                            {% endif %}
 								<img id="product-zoom" src="{{product.image.url}}"
 									data-zoom-image="{% static 'images/products/single/1-big.jpg' %}"
 									style="width: 80%;" alt="تصویر محصول">
@@ -61,7 +54,7 @@
 						</div><!-- End .row -->
 					</div><!-- End .product-gallery -->
 				</div><!-- End .col-md-6 -->
-				<div class="col-md-6">
+					<div class="col-md-6">
 				<form action="{% url 'cart:ordercontrol' product.code %}" method="post">
 					{% csrf_token %}
 						<div class="product-details">
@@ -79,33 +72,26 @@
 							</div><!-- End .rating-container -->
 
 							<div class="product-price">
-								<div style="margin: 15px">{{ product.variety1price |intcomma }}تومان</div>
+								{% if product.Sale %}
+								<div style="margin: 15px"><s>{{ product.price |intcomma }}تومان</s></div>
+								<div>{{product.sale_price |intcomma}} تومان</div>
+								{% else %}
+								{{ product.price | intcomma }}
+								{% endif %}
 
 							</div><!-- End .product-price -->
-                            <div class = "text-right">
-                               <ul>
-								    <li>
-								       نت ابتدایی : {{product.Fnote}}
-								    </li>
-								    <li>
-								        																       نت میانی : {{product.Mnote}}
 
-								    </li>
-								    <li>
-								       نت پایانی : {{product.Lnote}}
-								    </li>
-
-
-								    </ul>
-                            </div>
+							{# <div class="product-content">#}
+								{# <p>#}
+									{# {{product.about}}#}
+									{# </p>#}
+								{# </div><!-- End .product-content -->#}
 
 							<div class="details-filter-row details-row-size">
-
-
+								<label>رنگ : </label>
 
 								<div class="product-nav product-nav-thumbs">
-								    <p> 									{{ product.color }} قابل سفارش
-</p>
+									{{ product.color }}
 
 								</div>
 								<!-- End .product-nav -->
@@ -118,7 +104,7 @@
                                      <div class="form-check" style="padding-left: 3.2rem;">
 										<input class="form-check-input" type="radio" checked value="{{ product.variety1 }}" name="variety"
 											id="flexRadioDefault1">
-										<label style="width: 45px;" class="form-check-label" for="flexRadioDefault1">
+										<label style="width: 20px;" class="form-check-label" for="flexRadioDefault1">
 											{{product.variety1}}
 										</label>
 									</div>
@@ -127,7 +113,7 @@
                                      <div class="form-check" style="padding-left: 3.2rem;">
 										<input class="form-check-input" type="radio" value="{{ product.variety2 }}" name="variety"
 											id="flexRadioDefault1">
-										<label style="width: 45px;" class="form-check-label" for="flexRadioDefault1">
+										<label style="width: 20px;" class="form-check-label" for="flexRadioDefault1">
 											{{product.variety2}}
 										</label>
 									</div>
@@ -136,7 +122,7 @@
                                      <div class="form-check" style="padding-left: 3.2rem;">
 										<input class="form-check-input" type="radio" value="{{ product.variety3 }}" name="variety"
 											id="flexRadioDefault1">
-										<label style="width: 45px;" class="form-check-label" for="flexRadioDefault1">
+										<label style="width: 20px;" class="form-check-label" for="flexRadioDefault1">
 											{{ product.variety3 }}
 										</label>
 									</div>
@@ -145,7 +131,7 @@
                                         <div class="form-check" style="padding-left: 3.2rem;">
 										<input class="form-check-input" type="radio" value="{{ product.variety4 }}" name="variety"
 											id="flexRadioDefault1">
-										<label style="width: 45px;" class="form-check-label" for="flexRadioDefault1">
+										<label style="width: 20px;" class="form-check-label" for="flexRadioDefault1">
 											{{ product.variety4 }}
 										</label>
 									    </div>
@@ -154,7 +140,7 @@
                                         <div class="form-check" style="padding-left: 3.2rem;">
 										<input class="form-check-input" type="radio" value="{{ product.variety5 }}" name="variety"
 											id="flexRadioDefault1">
-										<label style="width: 45px;" class="form-check-label" for="flexRadioDefault1">
+										<label style="width: 20px;" class="form-check-label" for="flexRadioDefault1">
 											{{ product.variety5 }}
 										</label>
 									    </div>
@@ -211,6 +197,7 @@
 										خرید</span></button>
 								<!-- <input type="hidden" value="{{product.code}}" id="product-code">
 							<button id="addtocart"  class="btn-product btn-cart"><span>افزودن به سبد خرید</span></button> -->
+				</form>
 				<div class="details-action-wrapper">
 					<a href="{% url 'account:favorits' product.code %}" class="btn-product btn-wishlist"
 						title="لیست علاقه مندی"><span>افزودن
@@ -249,7 +236,7 @@
 							aria-labelledby="product-info-link">
 							<div class="product-desc-content">
 								<h3>اطلاعات</h3>
-								<p>لورمومتن </p>
+								<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن </p>
 
 							</div><!-- End .product-desc-content -->
 						</div><!-- .End .tab-pane -->
@@ -257,11 +244,7 @@
 							aria-labelledby="product-shipping-link">
 							<div class="product-desc-content">
 								<h3>ارسال و بازگشت</h3>
-								<p>
-
-مرسانا با بهترین بسته بندی کلیه سفارشات را با سریعترین روش به مراکز ارسالی می رساند. کلیه  محصولات تا زمان خروج از کارخانه از چند مرحله QC عبور خواهند کرد تا محصولات با بهترین کیفیت به مصرف کننده برسد.
-با توجه ویژه مدیریت به رضایتمندی و حمایت از مصرف کننده در صورتی که مرسوله، هرگونه ایراد یا عدم مطابقة با ستارش شما را دايت، میتوانید با هماهنگی با واحد پشتیانی مرسوله را مرجوع کنید. بدیهی است کلیه پرداختی شما متعاقبا مسترد خواهد شد.
-
+								<p></a>
 								</p>
 							</div><!-- End .product-desc-content -->
 						</div><!-- .End .tab-pane -->
