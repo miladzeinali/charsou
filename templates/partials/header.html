@@ -1,0 +1,263 @@
+<!-- Header section -->
+{% load static %}
+{% load humanize %}
+<header class="header header-6">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-left">
+                <ul class="top-menu top-link-menu d-none d-md-block">
+                    <li>
+                        <a href="#">لینک ها</a>
+                        <ul>
+                            <li><a href="tel_3A#"><i class="icon-phone"></i>تلفن تماس : 02155667788</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- End .top-menu -->
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+                <div class="social-icons social-icons-color">
+                    <a href="#" class="social-icon social-instagram" title="اینستاگرام" target="_blank"><i
+                            class="icon-instagram"></i></a>
+                </div><!-- End .soial-icons -->
+                {% if not user.is_authenticated%}
+                <ul class="top-menu top-link-menu" >
+                    <li>
+                        <a href="#">لینک ها</a>
+                        <ul>
+                            <li><a href="{% url 'account:register' %}" ><i class="icon-user"></i>ورود</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- End .top-menu -->
+
+             {% else %}
+                <div class="header-dropdown">
+                    <a href="#">حساب کاربری</a>
+                    <div class="header-menu">
+                        <ul>
+                            <li><a href="{% url 'web:dashbord' %}">سبد خرید</a></li>
+                            <li><a href="{% url 'account:dashboard' %}"> داشبورد</a></li>
+                            <li><a href="{% url 'account:logout' %}">خروج</a></li>
+                        </ul>
+                    </div><!-- End .header-menu -->
+                </div><!-- End .header-dropdown -->
+                {% endif %}
+            </div><!-- End .header-right -->
+        </div>
+    </div>
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-left">
+                <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
+                    <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                    <form action="#" method="get">
+                        <div class="header-search-wrapper search-wrapper-wide">
+                            <label for="q" class="sr-only">جستجو</label>
+                            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                            <input type="search" class="form-control" name="q" id="q"
+                                placeholder="جستجوی محصول ..." required>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+            </div>
+            <div class="header-center">
+                <a class="logo">
+                    <img src="{% static 'images/logo/logo.png' %}" href="{% url 'web:home' %}" alt="Molla Logo" width="82" height="20">
+                </a>
+            </div><!-- End .header-left -->
+            <div class="header-right">
+                <a href="{% url 'account:favelist' %}" class="wishlist-link">
+                    <i class="icon-heart-o"></i>
+                    <span class="wishlist-count">{{ countfave }}</span>
+                    <span class="wishlist-txt">علاقه مندی</span>
+                </a>
+
+                <div class="dropdown cart-dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <i class="icon-shopping-cart"></i>
+                        <span class="cart-count">{{ countitems }}</span>
+                        <span class="cart-txt">{{ total  | intcomma}} تومان </span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <div class="dropdown-cart-products">
+                            {% for orderitem in orderitems %}
+                            <div class="product">
+                                <div class="product-cart-details">
+                                    <h4 class="product-title">
+                                        <a href="">{{ orderitem.product.title }}</a>
+                                    </h4>
+
+                                    <span class="cart-product-info">
+                                        <span class="cart-product-qty">{{orderitem.quantity}} x </span>
+                                        {{orderitem.price | intcomma}} تومان
+                                    </span>
+                                </div><!-- End .product-cart-details -->
+
+                                <figure class="product-image-container">
+                                    <a href="product.html" class="product-image">
+                                        <img src="{{ orderitem.product.image.url }}" alt="محصول">
+                                    </a>
+                                </figure>
+                                <a href="{% url 'cart:deleteitem' orderitem.id %}" class="btn-remove" title="حذف محصول"><i class="icon-close"></i></a>
+                            </div><!-- End .product -->
+                            {% endfor %}
+{#                            <div class="product">#}
+{#                                <div class="product-cart-details">#}
+{#                                    <h4 class="product-title">#}
+{#                                        <a href="product.html">لباس زنانه آبی</a>#}
+{#                                    </h4>#}
+{##}
+{#                                    <span class="cart-product-info">#}
+{#                                        <span class="cart-product-qty">1 x </span>#}
+{#                                        76,000 تومان#}
+{#                                    </span>#}
+{#                                </div><!-- End .product-cart-details -->#}
+{##}
+{#                                <figure class="product-image-container">#}
+{#                                    <a href="product.html" class="product-image">#}
+{#                                        <img src="{% static 'images/products/cart/product-2.jpg' %}" alt="محصول">#}
+{#                                    </a>#}
+{#                                </figure>#}
+{#                                <a href="#" class="btn-remove" title="حذف محصول"><i class="icon-close"></i></a>#}
+{#                            </div><!-- End .product -->#}
+                        </div><!-- End .cart-product -->
+
+                        <div class="dropdown-cart-total">
+                            <span>مجموع</span>
+
+                            <span class="cart-total-price">{{total | intcomma}} تومان</span>
+                        </div><!-- End .dropdown-cart-total -->
+
+                        <div class="dropdown-cart-action">
+                            <a></a>
+                            <a href="{% url 'web:dashbord' %}" class="btn btn-outline-primary-2"><span>پرداخت</span><i
+                                    class="icon-long-arrow-left"></i></a>
+                        </div><!-- End .dropdown-cart-total -->
+                    </div><!-- End .dropdown-menu -->
+                </div><!-- End .cart-dropdown -->
+            </div>
+        </div><!-- End .container -->
+    </div><!-- End .header-middle -->
+
+    <div class="header-bottom sticky-header">
+        <div class="container">
+            <div class="header-left">
+                <nav class="main-nav">
+                    <ul class="menu ">
+                        <li class="">
+                            <a href="{% url 'web:home' %}" class="sf-with-ul">خانه</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'product:products' %}" class="sf-with-ul">فروشگاه</a>
+                        </li>
+                       
+                        <li>
+                            <a href="{% url 'web:about' %}" class="sf-with-ul">درباره ما </a>  
+                        </li>
+                        <li>
+                            <a href="{% url 'web:contact' %}" class="sf-with-ul">ارتباط با ما</a>  
+                        </li>
+                    </ul><!-- End .menu -->
+                </nav><!-- End .main-nav -->
+
+                <button class="mobile-menu-toggler">
+                    <span class="sr-only">فهرست</span>
+                    <i class="icon-bars"></i>
+                </button>
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+                <i class="la la-lightbulb-o"></i>
+                <p>خرید تا 30 درصد تخفیف</span></p>
+            </div>
+        </div><!-- End .container -->
+    </div><!-- End .header-bottom -->
+</header><!-- End .header -->
+<!-- Header section end -->
+<div class="mobile-menu-container">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+        <form action="#" method="get" class="mobile-search">
+            <label for="mobile-search" class="sr-only">جستجو</label>
+            <input type="search" class="form-control" name="mobile-search" id="mobile-search"
+                placeholder="جستجو در ..." required>
+            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+        </form>
+
+        <ul class="nav nav-pills-mobile nav-border-anim" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="mobile-menu-link" data-toggle="tab" href="#mobile-menu-tab"
+                    role="tab" aria-controls="mobile-menu-tab" aria-selected="true">منو</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="mobile-cats-link" data-toggle="tab" href="#mobile-cats-tab" role="tab"
+                    aria-controls="mobile-cats-tab" aria-selected="false">دسته بندی ها</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel"
+                aria-labelledby="mobile-menu-link">
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li class="active">
+                            <a href="{% url 'web:home' %}">خانه</a>
+
+                           
+                        </li>
+                        <li>
+                            <a href="{% url 'product:products' %}" class="sf-with-ul">فروشگاه</a>
+
+                          
+                        </li>
+                       
+                        <li>
+                            <a href="{% url 'web:about' %}" class="sf-with-ul">درباره ما </a>
+
+                            
+                        </li>
+                        <li>
+                            <a href="{% url 'web:contact' %}" class="sf-with-ul">ارتباط با ما</a>
+
+                           
+                        </li>
+                        <li>
+                            <a href="{% url 'blog:posts' %}" class="sf-with-ul"> وبلاگ </a>
+
+
+                        </li>
+                    </ul>
+                </nav><!-- End .mobile-nav -->
+            </div><!-- .End .tab-pane -->
+            <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
+                <nav class="mobile-cats-nav">
+                    <ul class="mobile-cats-menu">
+                        <li><a class="mobile-cats-lead" href="#">پیشنهاد روزانه</a></li>
+                        <li><a class="mobile-cats-lead" href="#">هدیه</a></li>
+                        <li><a href="#">تخت خواب</a></li>
+                        <li><a href="#">روشنایی</a></li>
+                        <li><a href="#">مبلمان</a></li>
+                        <li><a href="#">فضای ذخیره سازی</a></li>
+                        <li><a href="#">میز وصندلی</a></li>
+                        <li><a href="#">دکور </a></li>
+                        <li><a href="#">کابینت</a></li>
+                        <li><a href="#">قهوه</a></li>
+                        <li><a href="#">مبلمان خارج از منزل </a></li>
+                    </ul><!-- End .mobile-cats-menu -->
+                </nav><!-- End .mobile-cats-nav -->
+            </div><!-- .End .tab-pane -->
+        </div><!-- End .tab-content -->
+
+        <div class="social-icons">
+            <a href="#" class="social-icon" target="_blank" title="فیسبوک"><i class="icon-facebook-f"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="توییتر"><i class="icon-twitter"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="اینستاگرام"><i class="icon-instagram"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="یوتیوب"><i class="icon-youtube"></i></a>
+        </div><!-- End .social-icons -->
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->

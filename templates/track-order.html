@@ -1,0 +1,90 @@
+<title> فروشگاه | مرصانا</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block header %}
+{% include 'partials/header.html' %}
+{% endblock %}
+{% block hero%}
+
+
+{% endblock %}
+{% block content %}
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="container">
+        <h1 class="page-title">پیگیری سفارش<span>صفحات</span></h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
+            <li class="breadcrumb-item"><a href="#">صفحات</a></li>
+            <li class="breadcrumb-item active" aria-current="page">پیگیری سفارش</li>
+        </ol>
+    </div><!-- End .container -->
+</nav><!-- End .breadcrumb-nav -->
+
+<div class="page-content">
+    <div class="container">
+        <div class="trackorder-content col-md-12">
+            <div class="trackorder-inner">
+                <div class="trackorder-top">
+                    <div class="trackorder-detail">
+                        <div>بازه زمانی تحویل سفارش : ۲ الی ۳ روز کاری پس از ثبت سفارش</div>
+                        <div>نام تحویل گیرنده سفارش : <span>{{ ordermanage.first_name }} {{ ordermanage.last_name }} </span></div>
+                    </div>
+                    <h2 class="trackorder-id">سفارش {{ordermanage.id}}#</h2>
+                </div>
+                <div class="trackorder-bottom">
+                    <div class="trackorder-progress">
+                        <ul class="trackorder-progressbar">
+                            <li class="trackorder-step active"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/processed.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>پردازش شد</span></li>
+                            <li class="trackorder-step active"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/packing.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>وارد بخش بسته بندی شد </span></li>
+                            {% if ordermanage.sended %}
+                            <li class="trackorder-step active"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/shipped.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>ارسال شد</span></li>
+                            {% else %}
+                            <li class="trackorder-step"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/shipped.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>ارسال شد</span></li>
+                            {% endif %}
+                            {% if ordermanage.delivered %}
+                            <li class="trackorder-step active"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/deliveried.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>تحویل داده شد</span></li>
+                            {% else %}
+                            <li class="trackorder-step"><span class="track-icon"> <img
+                                        src="{% static 'images/track order/deliveried.png' %}"
+                                        alt="track_order"></span><span
+                                    class="progressbar-track"></span><span class="track-title">سفارش
+                                    <br>تحویل داده شد</span></li>
+                        {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End .container -->
+</div><!-- End .page-content -->
+{% endblock %}
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock %}

@@ -1,0 +1,222 @@
+<title> کاربر   | مرصانا</title>
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+ <!-- invoice start -->
+ <section class="invoice2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="invoice-popup">
+                    <div>
+                        <div class="row invoice-header">
+                            <div class="col-6">
+                                <div class="header-invoice-right">
+                                    <div class="brand-logo">
+                                        <a href="../index-1.html">
+                                            <img src="../assets/images/logo.png" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="invoice-to">
+                                        <ul>
+                                            <li>
+                                                <h4>فاکتور به:</h4>
+                                            </li>
+                                            <li>
+                                                <h3>{{ ordermanage.first_name }} {{ ordermanage.last_name }}</h3>
+                                            </li>
+                                            <li>
+                                                {{ordermanage.user}}
+                                            </li>
+                                            <li>
+                                                {{ ordermanage.email }}
+                                            </li>
+                                            <li>
+                                                {{ordermanage.province}} {{ ordermanage.city }} {{ ordermanage.district }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="header-invoice-left">
+                                    <ul>
+                                        <li>
+                                            <span>
+                                                <i class="icon-map-marker"></i>
+                                            </span>
+                                            فروشگاه بزرگ اینترنتی  مرسانا
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <i class="icon-phone"></i>
+                                            </span>
+                                            پشتیبانی وبسایت: 09139700953
+                                        </li>
+{#                                        <li>#}
+{#                                            <span>#}
+{#                                                <i class="icon-envelope"></i>#}
+{#                                            </span>#}
+{#                                            Support@example.Com#}
+{#                                        </li>#}
+                                        <li>
+                                            <span>
+                                                <i class="icon-chrome"></i>
+                                            </span>
+                                            www.mersana-co.com
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="header-contain">
+                                    <div class="invoice-text">
+                                        فاکتور خرید
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row invoice-breadcrumb">
+                            <div class="col-12">
+                                <div class="invoice-contain">
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                <h6>تاریخ و زمان فاکتور : </h6>
+                                                <h5>{{ ordermanage.date }} - {{ ordermanage.time }}</h5>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <h6>تاریخ انقضا : </h4>
+                                                    <h5>یک هفته پس از تحویل کالا</h5>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <h6>شماره حساب : </h6>
+                                                <h5>درگاه زرین پال</h5>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <h6>مبلغ نهایی : </h6>
+                                                <h5>{{ ordermanage.totalprice }} تومان</h5>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive-md">
+                            <table class="invoice-table ">
+                                <thead>
+                                    <tr>
+                                        <th>کد محصول</th>
+                                        <th>نام آیتم</th>
+                                        <th>تعداد</th>
+                                        <th>قیمت</th>
+                                        <th>مجموع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for orderitem in orderitems %}
+
+
+                                        <td>{{ orderitem.product.id }}</td>
+                                        <td>
+                                            <h3>
+                                                {{ orderitem.product.title }}
+                                            </h3>
+{#                                            <p> alaki </p>#}
+                                        </td>
+                                        <td>{{orderitem.quantity}}</td>
+                                        <td>{{orderitem.price}} تومان</td>
+                                        <td>{{orderitem.total}} تومان</td>
+                                    </tr>
+                                    {% endfor %}
+{#                                    <tr>#}
+{#                                        <td>2</td>#}
+{#                                        <td>#}
+{#                                            <h3>#}
+{#                                                گوشی هوشمند سامسونگ#}
+{#                                            </h3>#}
+{#                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>#}
+{#                                        </td>#}
+{#                                        <td>1</td>#}
+{#                                        <td>4,150,000 تومان</td>#}
+{#                                        <td>4,150,000 تومان</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>4</td>#}
+{#                                        <td>#}
+{#                                            <h3>#}
+{#                                                کیف زنانه مشکی#}
+{#                                            </h3>#}
+{#                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>#}
+{#                                        </td>#}
+{#                                        <td>3</td>#}
+{#                                        <td>250,000 تومان</td>#}
+{#                                        <td>750,000 تومان</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>5</td>#}
+{#                                        <td>#}
+{#                                            <h3>#}
+{#                                                صندلی اداری#}
+{#                                            </h3>#}
+{#                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>#}
+{#                                        </td>#}
+{#                                        <td>10</td>#}
+{#                                        <td>300,000 تومان</td>#}
+{#                                        <td>3,000,000 تومان</td>#}
+{#                                    </tr>#}
+                                </tbody>
+                            </table>
+                            <div class="invoice-total">
+                                <div class="row">
+                                    <div class="col-md-4 offset-8">
+                                        <div class="total-right">
+                                            <ul>
+{#                                                <li>#}
+{#                                                    جمع فاکتور#}
+{#                                                    <span>{{ordermanage.totalprice}} تومان</span>#}
+{#                                                </li>#}
+                                                <li>
+                                                    مالیات و ارزش افزوده
+                                                    <span>{{ ordermanage.tax }} تومان</span>
+                                                </li>
+                                                <li>
+                                                    مبلغ نهایی
+                                                    <span>{{ordermanage.totalprice}} تومان</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row print-bar justify-content-end">
+                                <div class="col-md-6">
+                                    <div class="printbar-right">
+                                        <button id="printinvoice" class="btn btn-solid btn-md ">
+                                            چاپ فاکتور
+                                        </button>
+                                        <a href="{% url 'account:trackorder' ordermanage.id %}" class="btn btn-warning btn-md ">
+                                            پیگیری سفارش
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- invoice end -->
+{% endblock %}
