@@ -11,7 +11,22 @@
  {%  endblock %}
  {%  block content %}
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-2">
+                <div class="banner banner-overlay">
+                    <a href="#">
+                        <img src="{% static 'images/demos/demo-6/banners/banner-1.jpg' %}" alt="بنر">
+                    </a>
+
+                    <div class="banner-content banner-content-center">
+                        <h4 class="banner-subtitle text-white"><a href="{% url 'product:genfemale' %}">محصولات جدید</a></h4>
+                        <!-- End .banner-subtitle -->
+                        <h3 class="banner-title text-white"><a href="{% url 'product:genfemale' %}"><strong>زنانه</strong></h3>
+                        <!-- End .banner-title -->
+                        <a href="{% url 'product:genfemale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
+                    </div><!-- End .banner-content -->
+                </div><!-- End .banner -->
+            </div><!-- End .col-sm-6 -->
+            <div class="col-sm-2">
                 <div class="banner banner-overlay">
                     <a href="#">
                         <img src="{% static 'images/demos/demo-6/banners/banner-1.jpg' %}" alt="بنر">
@@ -27,7 +42,7 @@
                 </div><!-- End .banner -->
             </div><!-- End .col-sm-6 -->
 
-            <div class="col-sm-6">
+            <div class="col-sm-2">
                 <div class="banner banner-overlay">
                     <a href="#">
                         <img src="{% static 'images/demos/demo-6/banners/banner-2.jpg' %}" alt="بنر">
@@ -42,7 +57,52 @@
                     </div><!-- End .banner-content -->
                 </div><!-- End .banner -->
             </div><!-- End .col-sm-6 -->
-        </div><!-- End .row -->
+            <div class="col-sm-2">
+                    <div class="banner banner-overlay">
+                        <a href="#">
+                            <img src="{% static 'images/demos/demo-6/banners/banner-2.jpg' %}" alt="بنر">
+                        </a>
+
+                        <div class="banner-content banner-content-center">
+                            <h4 class="banner-subtitle text-white"><a href="{% url 'product:genmale' %}">محصولات جدید</a></h4>
+                            <!-- End .banner-subtitle -->
+                            <h3 class="banner-title text-white"><a href="{% url 'product:genmale' %}"><strong>مردانه</strong></a></h3>
+                            <!-- End .banner-title -->
+                            <a href="{% url 'product:genmale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-sm-6 -->
+        <div class="col-sm-2">
+                    <div class="banner banner-overlay">
+                        <a href="#">
+                            <img src="{% static 'images/demos/demo-6/banners/banner-2.jpg' %}" alt="بنر">
+                        </a>
+
+                        <div class="banner-content banner-content-center">
+                            <h4 class="banner-subtitle text-white"><a href="{% url 'product:genmale' %}">محصولات جدید</a></h4>
+                            <!-- End .banner-subtitle -->
+                            <h3 class="banner-title text-white"><a href="{% url 'product:genmale' %}"><strong>مردانه</strong></a></h3>
+                            <!-- End .banner-title -->
+                            <a href="{% url 'product:genmale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-sm-6 --><div class="col-sm-2">
+                    <div class="banner banner-overlay">
+                        <a href="#">
+                            <img src="{% static 'images/demos/demo-6/banners/banner-2.jpg' %}" alt="بنر">
+                        </a>
+
+                        <div class="banner-content banner-content-center">
+                            <h4 class="banner-subtitle text-white"><a href="{% url 'product:genmale' %}">محصولات جدید</a></h4>
+                            <!-- End .banner-subtitle -->
+                            <h3 class="banner-title text-white"><a href="{% url 'product:genmale' %}"><strong>مردانه</strong></a></h3>
+                            <!-- End .banner-title -->
+                            <a href="{% url 'product:genmale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-sm-6 -->
+
+            </div><!-- End .row -->
         <hr class="mt-0 mb-0">
     </div><!-- End .container -->
 </div><!-- End .bg-gray -->
