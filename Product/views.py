@@ -121,7 +121,26 @@ def filter_data (request):
     if len(categoris) > 0:
         allProducts = allProducts.filter(category__Category__in = categoris).distinct()
     if len(genders) > 0:
-        print(genders)
         allProducts = allProducts.filter(gender__in = genders).distinct()
     t = render_to_string('ajax/product-list.html',{'data':allProducts})
     return JsonResponse({'data': t})
+
+def Speakers(request):
+    products = Product.objects.filter(category='speaker')
+    return render(request,'products.html',{'products':products})
+def PowerBanks(request):
+    products = Product.objects.filter(category='powerbank')
+    return render(request,'products.html',{'products':products})
+def iwatch(request):
+    products = Product.objects.filter(category='iwatch')
+    return render(request,'products.html',{'products':products})
+def Headsets(request):
+    products = Product.objects.filter(category='headsets')
+    return render(request,'products.html',{'products':products})
+
+def Airpods(request):
+    products = Product.objects.filter(category='airpods')
+    return render(request,'products.html',{'products':products})
+def Chargers(request):
+    products = Product.objects.filter(category='chargers')
+    return render(request,'products.html',{'products':products})
