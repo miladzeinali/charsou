@@ -45,8 +45,8 @@
 								<figure class="product-media">
 									{% if product.Sale %}
 									<span class="product-label label-new">تخفیف امروز</span>
-
 									{% endif %}
+									
 									<a href="{% url 'product:product' product.id %}">
 										<img src="{{product.image.url}}" href="" alt="تصویر محصول"
 											class="product-image">
@@ -79,9 +79,16 @@
 									<h3 class="product-title text-center"><a
 											href="{% url 'product:product' product.id %}">{{ product.title }}
 										</a></h3><!-- End .product-title -->
+									{% if product.Sale %}
 									<div class="product-price">
-										<span>{{ product.variety1price |intcomma }}</span>
+										<span><s>{{ product.variety1price |intcomma }}</s></span> <span
+											style="padding-right: 10%">{{ product.sale_price | intcomma }} تومان</span>
 									</div><!-- End .product-price -->
+									{% else %}
+									<div class="product-price">
+										تومان {{ product.variety1price |intcomma }}
+									</div><!-- End .product-price -->
+									{% endif %}
 									<div class="ratings-container">
 										<div class="ratings">
 											<div class="ratings-val" style="width: 40%;"></div>

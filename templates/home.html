@@ -1,47 +1,19 @@
 <title>خانه | مرصانا</title>
 
- {%  extends 'base.html' %}
- {%  load static %}
- {% load humanize %}
- {%  block header %}
-     {%  include 'partials/header.html' %}
- {%  endblock %}
- {%  block hero %}
-     {%  include 'partials/hero.html' %}
- {%  endblock %}
- {%  block content %}
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="banner banner-overlay">
-                    <a href="#">
-                        <img src="{% static 'images/demos/demo-6/banners/banner-1.jpg' %}" alt="بنر">
-                    </a>
-
-                    <div class="banner-content banner-content-center">
-                        <h4 class="banner-subtitle text-white"><a href="{% url 'product:genfemale' %}">محصولات جدید</a></h4>
-                        <!-- End .banner-subtitle -->
-                        <h3 class="banner-title text-white"><a href="{% url 'product:genfemale' %}"><strong>زنانه</strong></h3>
-                        <!-- End .banner-title -->
-                        <a href="{% url 'product:genfemale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
-                    </div><!-- End .banner-content -->
-                </div><!-- End .banner -->
-            </div><!-- End .col-sm-6 -->
-            <div class="col-sm-2">
-                <div class="banner banner-overlay">
-                    <a href="#">
-                        <img src="{% static 'images/demos/demo-6/banners/banner-1.jpg' %}" alt="بنر">
-                    </a>
-
-                    <div class="banner-content banner-content-center">
-                        <h4 class="banner-subtitle text-white"><a href="{% url 'product:genfemale' %}">محصولات جدید</a></h4>
-                        <!-- End .banner-subtitle -->
-                        <h3 class="banner-title text-white"><a href="{% url 'product:genfemale' %}"><strong>زنانه</strong></h3>
-                        <!-- End .banner-title -->
-                        <a href="{% url 'product:genfemale' %}" class="btn btn-outline-white banner-link underline">خرید</a>
-                    </div><!-- End .banner-content -->
-                </div><!-- End .banner -->
-            </div><!-- End .col-sm-6 -->
-
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block header %}
+{% include 'partials/header.html' %}
+{% endblock %}
+{% block hero %}
+{% include 'partials/hero.html' %}
+{% endblock %}
+{% block content %}
+<section style="background-color: #222222;">
+    <div class="pt-2 pb-3">
+        <div class="container">
+            <div class="row">
             <div class="col-sm-2">
                 <div class="banner banner-overlay">
                     <a href="#">
@@ -101,179 +73,185 @@
                         </div><!-- End .banner-content -->
                     </div><!-- End .banner -->
                 </div><!-- End .col-sm-6 -->
-
             </div><!-- End .row -->
-        <hr class="mt-0 mb-0">
-    </div><!-- End .container -->
-</div><!-- End .bg-gray -->
+            <hr class="mt-0 mb-0">
+        </div><!-- End .container -->
+    </div><!-- End .bg-gray -->
 
-{#<div class="mb-5"></div><!-- End .mb-5 -->#}
+    {#<div class="mb-5"></div><!-- End .mb-5 -->#}
 
-{#<div class="mb-5"></div><!-- End .mb-5 -->#}
+    {#<div class="mb-5"></div><!-- End .mb-5 -->#}
 
-<div class="deal bg-image pt-8 pb-8"
-    style="background-image: url(static/images/demos/demo-6/deal/bg-1.jpg);">
+    <div class="deal bg-image pt-8 pb-8" style="background-image: url(static/images/demos/demo-6/deal/bg-1.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6">
+                    <div class="deal-content text-center" data-aos="flip-left">
+                        <h4>تعداد محدود. </h4>
+                        <h2>پیشنهاد روزانه</h2>
+                        <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
+                    </div><!-- End .deal-content -->
+                    <div class="row deal-products justify-content-center">
+                        {% for sale in sales %}
+                        <div class="col-6 deal-product text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="{{sale.image.url}}" alt="تصویر محصول" class="product-image">
+                                </a>
+
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <h3 class="product-title text-center"><a href="product.html"> {{ sale.title }}</a>
+                                </h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="new-price">{{sale.variety1price | intcomma}} تومان</span>
+                                    {# <span class="old-price"><s>{{ sale.va | intcomma}}</s></span>#}
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+                            <a href="{% url 'product:product' sale.id %}" class="action">خرید</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div><!-- End .col-lg-5 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .deal -->
+
+    <div class="pt-4 pb-3" style="background-color: #222;">
+        <div class="container">
+            <div class="row justify-content-center  ">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="icon-box text-center " data-aos="fade-down" data-aos-offset="200"
+                        data-aos-easing="ease-in-sine">
+                        <span class="icon-box-icon">
+                            <i class="icon-truck"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <h3 class="icon-box-title">پرداخت و ارسال</h3><!-- End .icon-box-title -->
+                            <p class="text-center">ارسال رایگان برای سفارشات بالای ۵ میلیون تومان</p>
+                        </div><!-- End .icon-box-content -->
+                    </div><!-- End .icon-box -->
+                </div><!-- End .col-lg-3 col-sm-6 -->
+
+                <div class="col-lg-3 col-sm-6 ">
+                    <div class="icon-box text-center " data-aos="fade-down" data-aos-offset="200"
+                        data-aos-easing="ease-in-sine">
+                        <span class="icon-box-icon">
+                            <i class="icon-rotate-left"></i>
+                        </span>
+                        <div class="icon-box-content ">
+                            <h3 class="icon-box-title ">مرجوع کردن سفارشات</h3><!-- End .icon-box-title -->
+                            <p class="text-center">گارانتی بازگرداندن وجه به صورت کامل</p>
+                        </div><!-- End .icon-box-content -->
+                    </div><!-- End .icon-box -->
+                </div><!-- End .col-lg-3 col-sm-6 -->
+
+                <div class="col-lg-3 col-sm-6 ">
+                    <div class="icon-box text-center " data-aos="fade-down" data-aos-offset="200"
+                        data-aos-easing="ease-in-sine">
+                        <span class="icon-box-icon">
+                            <i class="icon-unlock"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <h3 class="icon-box-title">پرداخت امن</h3><!-- End .icon-box-title -->
+                            <p class="text-center">100% پرداخت امن</p>
+                        </div><!-- End .icon-box-content -->
+                    </div><!-- End .icon-box -->
+                </div><!-- End .col-lg-3 col-sm-6 -->
+
+                <div class="col-lg-3 col-sm-6 ">
+                    <div class="icon-box text-center " data-aos="fade-down" data-aos-offset="200"
+                        data-aos-easing="ease-in-sine">
+                        <span class="icon-box-icon">
+                            <i class="icon-headphones"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <h3 class="icon-box-title">پشتیبانی حرفه ای</h3><!-- End .icon-box-title -->
+                            <p class="text-center">پشتبانی آنلاین به صورت 7روز هفته/24ساعته</p>
+                        </div><!-- End .icon-box-content -->
+                    </div><!-- End .icon-box -->
+                </div><!-- End .col-lg-3 col-sm-6 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .bg-light pt-2 pb-2 -->
+
+    <div class="mb-6"></div><!-- End .mb-5 -->
+
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6">
-                <div class="deal-content text-center">
-                    <h4>تعداد محدود. </h4>
-                    <h2>پیشنهاد روزانه</h2>
-                    <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
-                </div><!-- End .deal-content -->
-                <div class="row deal-products justify-content-center">
-                    {% for sale in sales %}
-                    <div class="col-6 deal-product text-center">
+        <h2 class="title text-center mb-4">محصولات جدید</h2><!-- End .title text-center -->
+
+
+        <div class="products">
+            <div class="row justify-content-center">
+                {% for product in news %}
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="product product-7 text-center" data-aos="fade-right" data-aos-offset="200"
+                        data-aos-easing="ease-in-sine">
+
+
                         <figure class="product-media">
-                            <a href="product.html">
-                                <img src="{{sale.image.url}}" alt="تصویر محصول"
-                                    class="product-image">
+                            {% if product.Sale %}
+                            <span class="product-label label-sale">فروش ویژه</span>
+                            <div class="product-label label-sale"
+                                style="border-radius: 50%;background-color: #cc9966;padding: 5px;">
+                                <span style="display: block;">20%</span>
+                                <span style="display: block;padding-top: 2px;">تخفیف</span>
+                            </div>
+                            {% endif %}
+                            
+                            <a href="{% url 'product:product' product.id %}">
+                                <img src="{{ product.image.url }}" alt="تصویر محصول" class="product-image">
+                                <img src="assets/images/demos/demo-6/products/product-5-2.jpg" alt="تصویر محصول"
+                                    class="product-image-hover">
                             </a>
 
+                            <div class="product-action-vertical">
+                                <a href="{% url 'account:favorits' product.code %}"
+                                    class="btn-product-icon btn-wishlist btn-expandable"><span>افزودن به
+                                        لیست علاقه مندی</span></a>
+                            </div><!-- End .product-action-vertical -->
+
+                            <div class="product-action">
+                                <a href="{% url 'cart:ordercontrol' product.code %}"
+                                    class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
+                            </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
 
                         <div class="product-body">
-                            <h3 class="product-title text-center"><a href="product.html"> {{ sale.title }}</a>
-                            </h3><!-- End .product-title -->
+                            <div class="product-cat text-center">
+                                <a href="{% url 'product:product' product.id %}">{{ product.title }}</a>
+                            </div><!-- End .product-cat -->
+                            {# <h3 class="product-title text-center"><a href="product.html">تاپ طرح گوره خری</a>#}
+                                {# </h3>#}
+                            <!-- End .product-title -->
                             <div class="product-price">
-                                <span class="new-price">{{sale.variety1price | intcomma}} تومان</span>
-{#                                <span class="old-price"><s>{{ sale.va | intcomma}}</s></span>#}
+                                {% if product.Sale %}
+                                <span class="new-price">{{product.sale_price}} تومان</span>
+                                {% endif %}
+                                <span class="old-price">{{ product.price }}تومان</span>
                             </div><!-- End .product-price -->
                         </div><!-- End .product-body -->
-                        <a href="{% url 'product:product' sale.id %}" class="action">خرید</a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div><!-- End .col-lg-5 -->
-        </div><!-- End .row -->
-    </div><!-- End .container -->
-</div><!-- End .deal -->
 
-<div class="pt-4 pb-3" style="background-color: #222;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-6">
-                <div class="icon-box text-center">
-                    <span class="icon-box-icon">
-                        <i class="icon-truck"></i>
-                    </span>
-                    <div class="icon-box-content">
-                        <h3 class="icon-box-title">پرداخت و ارسال</h3><!-- End .icon-box-title -->
-                        <p class="text-center">ارسال رایگان برای سفارشات بالای ۵ میلیون تومان</p>
-                    </div><!-- End .icon-box-content -->
-                </div><!-- End .icon-box -->
-            </div><!-- End .col-lg-3 col-sm-6 -->
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="icon-box text-center">
-                    <span class="icon-box-icon">
-                        <i class="icon-rotate-left"></i>
-                    </span>
-                    <div class="icon-box-content">
-                        <h3 class="icon-box-title">مرجوع کردن سفارشات</h3><!-- End .icon-box-title -->
-                        <p class="text-center">گارانتی بازگرداندن وجه به صورت کامل</p>
-                    </div><!-- End .icon-box-content -->
-                </div><!-- End .icon-box -->
-            </div><!-- End .col-lg-3 col-sm-6 -->
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="icon-box text-center">
-                    <span class="icon-box-icon">
-                        <i class="icon-unlock"></i>
-                    </span>
-                    <div class="icon-box-content">
-                        <h3 class="icon-box-title">پرداخت امن</h3><!-- End .icon-box-title -->
-                        <p class="text-center">100% پرداخت امن</p>
-                    </div><!-- End .icon-box-content -->
-                </div><!-- End .icon-box -->
-            </div><!-- End .col-lg-3 col-sm-6 -->
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="icon-box text-center">
-                    <span class="icon-box-icon">
-                        <i class="icon-headphones"></i>
-                    </span>
-                    <div class="icon-box-content">
-                        <h3 class="icon-box-title">پشتیبانی حرفه ای</h3><!-- End .icon-box-title -->
-                        <p class="text-center">پشتبانی آنلاین به صورت 7روز هفته/24ساعته</p>
-                    </div><!-- End .icon-box-content -->
-                </div><!-- End .icon-box -->
-            </div><!-- End .col-lg-3 col-sm-6 -->
-        </div><!-- End .row -->
-    </div><!-- End .container -->
-</div><!-- End .bg-light pt-2 pb-2 -->
-
-            <div class="mb-6"></div><!-- End .mb-5 -->
-
-            <div class="container">
-                <h2 class="title text-center mb-4">محصولات جدید</h2><!-- End .title text-center -->
-                                
-
-                <div class="products">
-                    <div class="row justify-content-center">
-                        {% for product in news %}
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="product product-7 text-center">
-
-
-                                <figure class="product-media">
-                                {% if product.Sale %}
-
-                                    <span class="product-label label-sale">فروش ویژه</span>
-                                                                    {% endif %}
-
-                                    <a href="{% url 'product:product' product.id %}">
-                                        <img src="{{ product.image.url }}" alt="تصویر محصول"
-                                            class="product-image">
-                                        <img src="assets/images/demos/demo-6/products/product-5-2.jpg" alt="تصویر محصول"
-                                            class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="{% url 'account:favorits' product.code %}" class="btn-product-icon btn-wishlist btn-expandable"><span>افزودن به
-                                                لیست علاقه مندی</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                    <div class="product-action">
-                                        <a href="{% url 'cart:ordercontrol' product.code %}" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
-                                    </div><!-- End .product-action -->
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <div class="product-cat text-center">
-                                        <a href="{% url 'product:product' product.id %}">{{ product.title }}</a>
-                                    </div><!-- End .product-cat -->
-{#                                    <h3 class="product-title text-center"><a href="product.html">تاپ طرح گوره خری</a>#}
-{#                                    </h3>#}
-                                    <!-- End .product-title -->
-                                    <div class="product-price">
-                                        {% if product.Sale %}
-                                        <span class="new-price">{{product.sale_price}} تومان</span>
-                                        {% endif %}
-                                        <span class="old-price">{{ product.price }}تومان</span>
-                                    </div><!-- End .product-price -->
-                                </div><!-- End .product-body -->
-
-                            </div><!-- End .product -->
-                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-                        {% endfor %}
-                    </div>
-                                                                            
-
-                </div>
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                {% endfor %}
             </div>
 
 
-
-
-
-<div class="container">
-</div><!-- End .container -->
+        </div>
+    </div>
 
 
 
 
- {% endblock %}
- {% block footer %}
- {%  include 'partials/footer.html' %}
- {%  endblock %}
+
+    <div class="container">
+    </div><!-- End .container -->
+</section>
+
+
+{% endblock %}
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock %}
